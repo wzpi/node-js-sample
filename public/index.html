@@ -3,176 +3,163 @@
 
 
 <style>
-@mixin center {
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-
-@mixin eye($size) {
-  position: absolute;
-  background: black;
-  margin: auto;
-  height: $size;
-  width: $size;
-  border-radius: 50%;
-}
-
-@mixin fluff {
-  position: absolute;
-  content: '';
-  width: 0;
-  height: 0;
-  border-bottom: 80px solid transparent;
-}
-
 /* colours */
-$bkgd: #F5E3E0;
-$fur: #EE9837;
-$floof: #FFF;
-$tongue: #E8B4BC;
-
 body {
-  background: $bkgd;
+  background: #F5E3E0;
 }
 
-.clover { /* a.k.a. corgo, pup pup, clo clo, or pupperoni */
+.clover {
+  /* a.k.a. corgo, pup pup, clo clo, or pupperoni */
   position: absolute;
   top: 50%;
   left: 50%;
   -webkit-transform: translateX(-50%) translateY(-50%);
-     -moz-transform: translateX(-50%) translateY(-50%);
-          transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
 }
 
-.corgi { /* https://en.wikipedia.org/wiki/Welsh_Corgi */
-  @include center;
+.corgi {
+  /* https://en.wikipedia.org/wiki/Welsh_Corgi */
+  left: 0;
+  right: 0;
+  margin: auto;
   position: relative;
   width: 200px;
   height: 300px;
 }
 
-.head { /* the scratchy zone */
+.head {
+  /* the scratchy zone */
   position: absolute;
   z-index: 1;
   top: 60px;
-  left:100px;
-  &:after { /* cheeks */
-    position: absolute;
-    top: 80px;
-    left: -100px;
-    content: '';
-    border: 100px solid transparent;
-	  border-top: 80px solid $fur;
-  }
-  .forehead { /* the nuzzle zone; shape behind eyes */
-    position: absolute;
-    top: 20px;
-    left:-60px;
-    height: 100px;
-    width: 120px;
-    background: $fur;
-    border-radius: 40%;
-  }
+  left: 100px;
+}
+.head:after {
+  /* cheeks */
+  position: absolute;
+  top: 80px;
+  left: -100px;
+  content: '';
+  border: 100px solid transparent;
+  border-top: 80px solid #EE9837;
+}
+.head .forehead {
+  /* the nuzzle zone; shape behind eyes */
+  position: absolute;
+  top: 20px;
+  left: -60px;
+  height: 100px;
+  width: 120px;
+  background: #EE9837;
+  border-radius: 40%;
 }
 
-.snout { /* an upside down css heart <3 */
+.snout {
+  /* an upside down css heart <3 */
   position: relative;
   z-index: 2;
   top: 60px;
-  left:-40px;
-    &:before,
-    &:after {
-      background: $floof;
-      position: absolute;
-      content: "";
-      top: 10px;
-      width: 50px;
-      height: 80px;
-      border-top: 1px solid #ddd;
-      border-radius: 60px 60px 0 0;
-      -webkit-transform: rotate(225deg);
-         -moz-transform: rotate(225deg);
-              transform: rotate(225deg);
-  }
-  &:after {
-    left: 30px;
-    -webkit-transform: rotate(135deg);
-       -moz-transform: rotate(135deg);
-            transform: rotate(135deg);
-  }
+  left: -40px;
 }
-
-.bridge { /* white fur between eyes */
+.snout:before, .snout:after {
+  background: #FFF;
   position: absolute;
-	top: -40px;
+  content: "";
+  top: 10px;
+  width: 50px;
+  height: 80px;
+  border-top: 1px solid #ddd;
+  border-radius: 60px 60px 0 0;
+  -webkit-transform: rotate(225deg);
+  -moz-transform: rotate(225deg);
+  transform: rotate(225deg);
+}
+.snout:after {
   left: 30px;
-	border: 10px solid transparent;
-	border-bottom: 40px solid $fur;
-	border-bottom-color: $floof;
+  -webkit-transform: rotate(135deg);
+  -moz-transform: rotate(135deg);
+  transform: rotate(135deg);
 }
 
-.booper { /* nose */
+.bridge {
+  /* white fur between eyes */
+  position: absolute;
+  top: -40px;
+  left: 30px;
+  border: 10px solid transparent;
+  border-bottom: 40px solid #EE9837;
+  border-bottom-color: #FFF;
+}
+
+.booper {
+  /* nose */
   background: black;
   position: absolute;
   z-index: 1;
   top: 35px;
-  left:20px;
+  left: 20px;
   height: 30px;
   width: 40px;
   border-radius: 50px 50px 70px 70px;
 }
 
-.eyes { /* a.k.a. love lasers; see mixin at top */
-  $size: 13px;
-  $posX: 25px;
+.eyes {
+  /* a.k.a. love lasers; see mixin at top */
   position: absolute;
-  top:60px;
-  .left{
-    @include eye($size);
-    left: $posX;
-  }
-  .right {
-    @include eye($size);
-    right: $posX;
-  }
+  top: 60px;
+}
+.eyes .left {
+  position: absolute;
+  background: black;
+  margin: auto;
+  height: 13px;
+  width: 13px;
+  border-radius: 50%;
+  left: 25px;
+}
+.eyes .right {
+  position: absolute;
+  background: black;
+  margin: auto;
+  height: 13px;
+  width: 13px;
+  border-radius: 50%;
+  right: 25px;
 }
 
-.ears { /* variables provide symmetry */
-  $posX: -40px;
-  $top: 35px;
-  $rotate: 45deg;
-  $skewX: 40deg;
-  $scale: (1,.866);
-  .left {
-    background-color: $fur;
-    position: absolute;
-    left: $posX;
-    top: $top;
-    transform: rotate($rotate) skewX($skewX) scale($scale);
-  } 
-  .right {
-    background-color: $fur;
-    position: absolute;
-    right: $posX;
-    top: $top;
-    transform: rotate(-($rotate)) skewX(-($skewX)) scale($scale);
-  }
-  .right, .right:before, .right:after,
-  .left, .left:before, .left:after {
-    width: 7em;
-    height: 6em;
-  }
-  .right, .right:before, .right:after {
-    border-radius: 20% 20% 40% 20%;
-  }
-  .left, .left:before, .left:after {
-    border-radius: 20% 20% 20% 40%;
-  }
+.ears {
+  /* variables provide symmetry */
+}
+.ears .left {
+  background-color: #EE9837;
+  position: absolute;
+  left: -40px;
+  top: 35px;
+  transform: rotate(45deg) skewX(40deg) scale(1, 0.866);
+}
+.ears .right {
+  background-color: #EE9837;
+  position: absolute;
+  right: -40px;
+  top: 35px;
+  transform: rotate(-45deg) skewX(-40deg) scale(1, 0.866);
+}
+.ears .right, .ears .right:before, .ears .right:after,
+.ears .left, .ears .left:before, .ears .left:after {
+  width: 7em;
+  height: 6em;
+}
+.ears .right, .ears .right:before, .ears .right:after {
+  border-radius: 20% 20% 40% 20%;
+}
+.ears .left, .ears .left:before, .ears .left:after {
+  border-radius: 20% 20% 20% 40%;
 }
 
-.tongue { /* a.k.a. the taste-inspector */
-  background: $tongue;
+.tongue {
+  /* a.k.a. the taste-inspector */
+  background: #E8B4BC;
   position: absolute;
   z-index: 1;
   top: 30px;
@@ -181,7 +168,7 @@ body {
   height: 40px;
   border-radius: 0 0 30% 30%;
   -webkit-animation: happydoggo 0.5s infinite;
-          animation: happydoggo 0.5s infinite;
+  animation: happydoggo 0.5s infinite;
 }
 
 @keyframes happydoggo {
@@ -195,7 +182,6 @@ body {
     top: 30px;
   }
 }
-
 @-webkit-keyframes happydoggo {
   0% {
     top: 30px;
@@ -207,13 +193,12 @@ body {
     top: 30px;
   }
 }
-
-.mouth { /* a.k.a. the treat-receiver */
-  $size: 62px;
-  background: $floof;
+.mouth {
+  /* a.k.a. the treat-receiver */
+  background: #FFF;
   position: relative;
-  width: $size;
-  height: $size;
+  width: 62px;
+  height: 62px;
   top: 100px;
   bottom: 0;
   left: -31px;
@@ -221,54 +206,79 @@ body {
   border-radius: 50%;
 }
 
-.magnificent-floof { /* see mixin at top */
-  $radius: 40%;
+.magnificent-floof {
+  /* see mixin at top */
   position: absolute;
   top: 146px;
   right: 0;
   bottom: 0;
   left: 0px;
   border-left: 100px solid transparent;
-	border-right: 100px solid transparent;
-	border-top: 160px solid $floof;
+  border-right: 100px solid transparent;
+  border-top: 160px solid #FFF;
   border-radius: 0 0 0 50px;
-  .left {
-    @include fluff;
-    border-right: 80px solid $floof;
-    top: -140px;
-    left: -100px;
-    &:before {
-      @include fluff;
-      border-right: 80px solid $floof;
-      top: 15px;
-      left: -10px;
-    }
-    &:after {
-      @include fluff;
-      border-right: 80px solid $floof;
-      top: 38px;
-      left: -2px;
-    }
-  }
-  .right {
-    @include fluff;
-    border-left: 80px solid $floof;
-    top: -140px;
-    right: -100px;
-    &:before {
-      @include fluff;
-      border-left: 80px solid $floof;
-      top: 15px;
-      right: -10px;
-    }
-    &:after {
-      @include fluff;
-      border-left: 80px solid $floof;
-      top: 38px;
-      right: -2px;
-    }
-  }
 }
+.magnificent-floof .left {
+  position: absolute;
+  content: '';
+  width: 0;
+  height: 0;
+  border-bottom: 80px solid transparent;
+  border-right: 80px solid #FFF;
+  top: -140px;
+  left: -100px;
+}
+.magnificent-floof .left:before {
+  position: absolute;
+  content: '';
+  width: 0;
+  height: 0;
+  border-bottom: 80px solid transparent;
+  border-right: 80px solid #FFF;
+  top: 15px;
+  left: -10px;
+}
+.magnificent-floof .left:after {
+  position: absolute;
+  content: '';
+  width: 0;
+  height: 0;
+  border-bottom: 80px solid transparent;
+  border-right: 80px solid #FFF;
+  top: 38px;
+  left: -2px;
+}
+.magnificent-floof .right {
+  position: absolute;
+  content: '';
+  width: 0;
+  height: 0;
+  border-bottom: 80px solid transparent;
+  border-left: 80px solid #FFF;
+  top: -140px;
+  right: -100px;
+}
+.magnificent-floof .right:before {
+  position: absolute;
+  content: '';
+  width: 0;
+  height: 0;
+  border-bottom: 80px solid transparent;
+  border-left: 80px solid #FFF;
+  top: 15px;
+  right: -10px;
+}
+.magnificent-floof .right:after {
+  position: absolute;
+  content: '';
+  width: 0;
+  height: 0;
+  border-bottom: 80px solid transparent;
+  border-left: 80px solid #FFF;
+  top: 38px;
+  right: -2px;
+}
+
 </style>
 
 <div class="clover">
